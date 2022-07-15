@@ -1,43 +1,42 @@
 /** @jsx h */
 import { h } from "preact";
+import { forwardRef } from "preact/compat";
 import { tw } from "twind";
-import { useState } from "preact/hooks";
-import useKeyPress from "./useKeyPress.tsx";
+import { Ref, useState } from "preact/hooks";
 
 interface LineProps {
-  text: string;
-  prompt: string;
+  text?: string;
+  prompt?: string;
   live: boolean;
-  onInput: (text: string) => void;
+  onEnter?: (text: string) => void;
 }
 
-export default function Line(props: LineProps) {
-  const [live, setLive] = useState(props.live);
-  useKeyPress("Enter", () => setLive(false));
+const Line = forwardRef((props: LineProps, ref: Ref<HTMLInputElement>) => {
+  const [text, setText] = useState(props.text || "");
 
-  const sInput = tw`
-    flex-grow
-    px-1
-    bg-transparent
-    focus:outline-none
-  `;
-
-  const sPrompt = tw`
-    px-1
-    text-green-600
-    flex-none
-  `;
+  const sBase = tw`flex-grow text-lg`;
+  const sInput = tw`bg-transparent focus:outline-none`;
+  const sPrompt = tw`px-1 text-green-600 font-bold flex-none text-lg`;
 
   return (
     <div class={tw`flex flex-row`}>
-      <div class={sPrompt}>{props.prompt}</div>
-      {h("input", {
-        type: "text",
-        class: sInput,
-        value: props.text,
-        onInput: (e) => props.onInput((e.target as HTMLInputElement).value),
-        readOnly: !live,
-      })}
+      <div class={sPrompt}>{props.prompt || "$>"}</div>
+      {props.live ? (
+        <input
+          ref={ref}
+          class={`${sBase} ${sInput}`}
+          type="text"
+          onInput={(e) => setText((e.target as HTMLInputElement).value)}
+          onChangeCapture={(e) =>
+            props.onEnter && props.onEnter((e.target as HTMLInputElement).value)
+          }
+          value={text}
+        />
+      ) : (
+        <pre class={sBase}>{text}</pre>
+      )}
     </div>
   );
-}
+});
+
+export default Line;
