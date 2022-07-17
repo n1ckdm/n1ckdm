@@ -6,16 +6,19 @@ import { Ref, useEffect, useState } from "preact/hooks";
 
 interface LineProps {
   text?: string;
+  color?: string;
   prompt: string;
   live: boolean;
   onEnter?: (text: string) => void;
 }
 
-const Line = forwardRef((props: LineProps, ref: Ref<HTMLInputElement>) => {
+const Line = forwardRef((props: LineProps, ref: Ref<HTMLTextAreaElement>) => {
   const [text, setText] = useState(props.text || "");
 
-  const sBase = tw`flex-grow text-lg`;
-  const sInput = tw`bg-transparent focus:outline-none`;
+  const color = props.color || "pink-400";
+  const sBase = tw`flex-grow break-all text-lg text-${color}`;
+  const sInput = tw`bg-transparent h-full focus:outline-none resize-none`;
+  const sPara = tw`whitespace-pre-wrap -my-0.5`;
   const sPrompt = tw`px-1 text-green-600 font-bold flex-none text-lg`;
 
   if (props.live) {
@@ -38,15 +41,19 @@ const Line = forwardRef((props: LineProps, ref: Ref<HTMLInputElement>) => {
     <div class={tw`flex flex-row`}>
       <div class={sPrompt}>{props.prompt}</div>
       {props.live ? (
-        <input
+        <textarea
           ref={ref}
+          spellcheck={false}
+          data-gramm={false}
+          data-gramm_editor={false}
+          data-enable-grammarly={false}
           class={`${sBase} ${sInput}`}
           type="text"
           onInput={(e) => setText((e.target as HTMLInputElement).value)}
           value={text}
-        />
+        ></textarea>
       ) : (
-        <pre class={sBase}>{text}</pre>
+        <p class={`${sBase} ${sPara}`}>{text}</p>
       )}
     </div>
   );

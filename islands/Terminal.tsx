@@ -6,13 +6,18 @@ import Line from "./Line.tsx";
 import useKeyPress from "./useKeyPress.tsx";
 
 const title = [
-  ` `,
-  `     _   __ ____ ______ __ __    __  ___ ___     ____  ______ ____ _   __`,
-  `    / | / //  _// ____// //_/   /  |/  //   |   / __ \\/_  __//  _// | / /`,
-  `   /  |/ / / / / /    / ,<     / /|_/ // /| |  / /_/ / / /   / / /  |/ / `,
-  `  / /|  /_/ / / /___ / /| |   / /  / // ___ | / _, _/ / /  _/ / / /|  /  `,
-  ` /_/ |_//___/ \\____//_/ |_|  /_/  /_//_/  |_|/_/ |_| /_/  /___//_/ |_/   `,
-  ` `,
+  `  _______  .__        __        _____                 __  .__         `,
+  `  \\      \\ |__| ____ |  | __   /     \\ _____ ________/  |_|__| ____   `,
+  `  /   |   \\|  |/ ___\\|  |/ /  /  \\ /  \\\\__  \\\\_  __ \\   __\\  |/    \\  `,
+  ` /    |    \\  \\  \\___|    <  /    Y    \\/ __ \\|  | \\/|  | |  |   |  \\ `,
+  ` \\____|__  /__|\\___  >__|_ \\ \\____|__  (____  /__|   |__| |__|___|  / `,
+  `         \\/        \\/     \\/         \\/     \\/                    \\/  `,
+  " ",
+  "nickdmartin.com",
+  "Personal website v0.0.1",
+  " ",
+  " ",
+  "# Hint: Type help to get started...",
 ];
 
 let historyIndex = 0;
@@ -20,7 +25,7 @@ const initCmdHist: string[] = [];
 const defaultLines: string[] = [];
 
 export default function Terminal() {
-  const liveLine = useRef<HTMLInputElement>(null);
+  const liveLine = useRef<HTMLTextAreaElement>(null);
   const [staticLines, setLines] = useState(defaultLines);
   const [liveText, setLiveText] = useState("");
   const [commandHistory, setCommandHistory] = useState(initCmdHist);
@@ -63,15 +68,17 @@ export default function Terminal() {
 
   function focusLiveLine() {
     if (liveLine.current) {
-      (liveLine as MutableRef<HTMLInputElement>).current.focus();
+      (liveLine as MutableRef<HTMLTextAreaElement>).current.focus();
     }
   }
 
   return (
-    <div>
-      {title.map((t) => (
-        <Line prompt="" text={t} live={false} />
-      ))}
+    <div class={tw`p-4 h-full`}>
+      <div class={tw`mx-auto`}>
+        {title.map((t) => (
+          <Line prompt="" text={t} live={false} />
+        ))}
+      </div>
       {staticLines.map((l) => (
         <Line prompt="$" text={l} live={false} />
       ))}
