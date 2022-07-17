@@ -6,7 +6,7 @@ import { Ref, useEffect, useState } from "preact/hooks";
 
 interface LineProps {
   text?: string;
-  prompt?: string;
+  prompt: string;
   live: boolean;
   onEnter?: (text: string) => void;
 }
@@ -36,7 +36,7 @@ const Line = forwardRef((props: LineProps, ref: Ref<HTMLInputElement>) => {
 
   return (
     <div class={tw`flex flex-row`}>
-      <div class={sPrompt}>{props.prompt || "$>"}</div>
+      <div class={sPrompt}>{props.prompt}</div>
       {props.live ? (
         <input
           ref={ref}

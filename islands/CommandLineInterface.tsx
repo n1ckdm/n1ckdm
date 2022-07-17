@@ -6,23 +6,22 @@ import Line from "./Line.tsx";
 import useKeyPress from "./useKeyPress.tsx";
 
 const title = [
-  ``,
+  ` `,
   `     _   __ ____ ______ __ __    __  ___ ___     ____  ______ ____ _   __`,
   `    / | / //  _// ____// //_/   /  |/  //   |   / __ \\/_  __//  _// | / /`,
   `   /  |/ / / / / /    / ,<     / /|_/ // /| |  / /_/ / / /   / / /  |/ / `,
   `  / /|  /_/ / / /___ / /| |   / /  / // ___ | / _, _/ / /  _/ / / /|  /  `,
   ` /_/ |_//___/ \\____//_/ |_|  /_/  /_//_/  |_|/_/ |_| /_/  /___//_/ |_/   `,
-  ``,
+  ` `,
 ];
 
+let historyIndex = 0;
 const initCmdHist: string[] = [];
+const defaultLines: string[] = [];
 
 export default function CommandLineInterface() {
-  const defaultLines = <Line text="" live={false} />;
-  let historyIndex = 0;
-
   const liveLine = useRef<HTMLInputElement>(null);
-  const [lines, setLines] = useState([defaultLines]);
+  const [staticLines, setLines] = useState(defaultLines);
   const [liveText, setLiveText] = useState("");
   const [commandHistory, setCommandHistory] = useState(initCmdHist);
 
@@ -36,13 +35,11 @@ export default function CommandLineInterface() {
         historyIndex = key === "ArrowUp" ? historyIndex - 1 : historyIndex + 1;
         historyIndex === commandHistory.length && (historyIndex = 0);
         historyIndex < 0 && (historyIndex = commandHistory.length - 1);
-        console.log([commandHistory, historyIndex]);
         if (commandHistory.length > 0) {
           setLiveText(commandHistory[historyIndex]);
         }
       }
     }
-
     globalThis.addEventListener("keydown", upArrowHandler);
     return () => {
       globalThis.removeEventListener("keydown", upArrowHandler);
@@ -50,11 +47,17 @@ export default function CommandLineInterface() {
   }, [commandHistory]);
 
   function handleEnter(text: string) {
-    console.log("command" + text);
+    console.log("command: " + text);
     setLiveText("");
-    setCommandHistory([...commandHistory, text]);
+    text && setCommandHistory([...commandHistory, text]);
     historyIndex = 0;
-    setLines([...lines, <Line text={text} live={false} />]);
+
+    if (text === "clear") {
+      setLines(defaultLines);
+    } else {
+      setLines([...staticLines, text]);
+    }
+
     setTimeout(focusLiveLine, 10);
   }
 
@@ -67,11 +70,14 @@ export default function CommandLineInterface() {
   return (
     <div>
       {title.map((t) => (
-        <Line text={t} live={false} />
+        <Line prompt="" text={t} live={false} />
       ))}
-      {lines}
+      {staticLines.map((l) => (
+        <Line prompt="$" text={l} live={false} />
+      ))}
       <Line
         ref={liveLine}
+        prompt="$"
         key={`${liveText}:${commandHistory.length}`}
         live={true}
         text={liveText}
