@@ -19,7 +19,7 @@ let historyIndex = 0;
 const initCmdHist: string[] = [];
 const defaultLines: string[] = [];
 
-export default function CommandLineInterface() {
+export default function Terminal() {
   const liveLine = useRef<HTMLInputElement>(null);
   const [staticLines, setLines] = useState(defaultLines);
   const [liveText, setLiveText] = useState("");

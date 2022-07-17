@@ -2,12 +2,12 @@
 import { h } from "preact";
 import { tw } from "@twind";
 import { css } from "twind/css";
-import Cli from "../islands/CommandLineInterface.tsx";
+import Terminal from "../islands/Terminal.tsx";
 
 export default function Home() {
   return (
     <div class={tw`p-4 mx-auto max-w-screen-md`}>
-      <Cli />
+      <Terminal />
     </div>
   );
 }
