@@ -2,7 +2,7 @@
 import { h } from "preact";
 import { forwardRef } from "preact/compat";
 import { tw } from "twind";
-import { Ref, useState } from "preact/hooks";
+import { Ref, useEffect, useState } from "preact/hooks";
 
 interface LineProps {
   text?: string;
@@ -18,6 +18,22 @@ const Line = forwardRef((props: LineProps, ref: Ref<HTMLInputElement>) => {
   const sInput = tw`bg-transparent focus:outline-none`;
   const sPrompt = tw`px-1 text-green-600 font-bold flex-none text-lg`;
 
+  if (props.live) {
+    useEffect(() => {
+      function enterHandler({ key }: { key: string }): void {
+        if (key === "Enter") {
+          props.onEnter && props.onEnter(text);
+          setText("");
+        }
+      }
+
+      globalThis.addEventListener("keydown", enterHandler);
+      return () => {
+        globalThis.removeEventListener("keydown", enterHandler);
+      };
+    }, [text]);
+  }
+
   return (
     <div class={tw`flex flex-row`}>
       <div class={sPrompt}>{props.prompt || "$>"}</div>
@@ -27,9 +43,6 @@ const Line = forwardRef((props: LineProps, ref: Ref<HTMLInputElement>) => {
           class={`${sBase} ${sInput}`}
           type="text"
           onInput={(e) => setText((e.target as HTMLInputElement).value)}
-          onChangeCapture={(e) =>
-            props.onEnter && props.onEnter((e.target as HTMLInputElement).value)
-          }
           value={text}
         />
       ) : (

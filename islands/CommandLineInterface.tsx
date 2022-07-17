@@ -15,39 +15,47 @@ const title = [
   ``,
 ];
 
+const initCmdHist: string[] = [];
+
 export default function CommandLineInterface() {
   const defaultLines = <Line text="" live={false} />;
-  const commandHistory: string[] = [];
   let historyIndex = 0;
 
-  const [lines, setLines] = useState([defaultLines]);
   const liveLine = useRef<HTMLInputElement>(null);
+  const [lines, setLines] = useState([defaultLines]);
   const [liveText, setLiveText] = useState("");
+  const [commandHistory, setCommandHistory] = useState(initCmdHist);
 
   useEffect(() => {
     focusLiveLine();
   }, []);
 
-  useKeyPress("ArrowUp", () => {
-    console.log([commandHistory, historyIndex]);
-    if (commandHistory.length > 0 && historyIndex === 0) {
-      historyIndex = commandHistory.length - 1;
-    } else if (commandHistory.length > 0 && historyIndex > 0) {
-      historyIndex = historyIndex - 1;
-    } else {
-      historyIndex = 0;
+  useEffect(() => {
+    function upArrowHandler({ key }: { key: string }): void {
+      if (key === "ArrowUp" || key === "ArrowDown") {
+        historyIndex = key === "ArrowUp" ? historyIndex - 1 : historyIndex + 1;
+        historyIndex === commandHistory.length && (historyIndex = 0);
+        historyIndex < 0 && (historyIndex = commandHistory.length - 1);
+        console.log([commandHistory, historyIndex]);
+        if (commandHistory.length > 0) {
+          setLiveText(commandHistory[historyIndex]);
+        }
+      }
     }
-    if (commandHistory.length > 0) {
-      setLiveText(commandHistory[historyIndex]);
-    }
-  });
+
+    globalThis.addEventListener("keydown", upArrowHandler);
+    return () => {
+      globalThis.removeEventListener("keydown", upArrowHandler);
+    };
+  }, [commandHistory]);
 
   function handleEnter(text: string) {
+    console.log("command" + text);
     setLiveText("");
-    commandHistory.push(text);
+    setCommandHistory([...commandHistory, text]);
     historyIndex = 0;
     setLines([...lines, <Line text={text} live={false} />]);
-    setTimeout(focusLiveLine, 200);
+    setTimeout(focusLiveLine, 10);
   }
 
   function focusLiveLine() {
@@ -64,7 +72,7 @@ export default function CommandLineInterface() {
       {lines}
       <Line
         ref={liveLine}
-        key={commandHistory.length}
+        key={`${liveText}:${commandHistory.length}`}
         live={true}
         text={liveText}
         onEnter={handleEnter}
