@@ -1,28 +1,14 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "twind";
+import { asset } from "$fresh/runtime.ts";
 import { MutableRef, useEffect, useRef, useState } from "preact/hooks";
-import Line from "./Line.tsx";
-import useKeyPress from "./useKeyPress.tsx";
-
-const title = [
-  `  _______  .__        __        _____                 __  .__         `,
-  `  \\      \\ |__| ____ |  | __   /     \\ _____ ________/  |_|__| ____   `,
-  `  /   |   \\|  |/ ___\\|  |/ /  /  \\ /  \\\\__  \\\\_  __ \\   __\\  |/    \\  `,
-  ` /    |    \\  \\  \\___|    <  /    Y    \\/ __ \\|  | \\/|  | |  |   |  \\ `,
-  ` \\____|__  /__|\\___  >__|_ \\ \\____|__  (____  /__|   |__| |__|___|  / `,
-  `         \\/        \\/     \\/         \\/     \\/                    \\/  `,
-  " ",
-  "nickdmartin.com",
-  "Personal website v0.0.1",
-  " ",
-  " ",
-  "# Hint: Type help to get started...",
-];
+import TerminalInputLine from "./TerminalInputLine.tsx";
+import StaticLine from "../src/components/StaticLine.tsx";
 
 let historyIndex = 0;
 const initCmdHist: string[] = [];
-const defaultLines: string[] = [];
+const defaultLines: h.JSX.Element[] = [];
 
 export default function Terminal() {
   const liveLine = useRef<HTMLTextAreaElement>(null);
@@ -52,7 +38,6 @@ export default function Terminal() {
   }, [commandHistory]);
 
   function handleEnter(text: string) {
-    console.log("command: " + text);
     setLiveText("");
     text && setCommandHistory([...commandHistory, text]);
     historyIndex = 0;
@@ -60,7 +45,41 @@ export default function Terminal() {
     if (text === "clear") {
       setLines(defaultLines);
     } else {
-      setLines([...staticLines, text]);
+      setLines([...staticLines, <StaticLine text={text} prompt="$" />]);
+    }
+
+    if (text === "help") {
+      const lines = [
+        "Commands:",
+        "   clear:            clear the terminal",
+        "   help:             show this help",
+        "   show [img,...]:   show image(s):",
+        "      -\"nick\"        print an image of me! 🚀",
+        "      -\"unicorn\"     print an image of my faviourite animal 🦄",
+        "   cv [cmd]:         display parts of my cv:",
+        "      -\"all\"         view my entire cv in one go",
+      ]
+
+      setLines([
+        ...staticLines,
+        <StaticLine text={text} prompt="$" />,
+        ...lines.map(l => <StaticLine text={l} color="blue-500" smSzAdjust={true} />)
+      ]);
+    }
+
+    const regex = /show (\w*)[ ]*(\w*)[ ]*(\w*)[ ]*(\w*)[ ]*(\w*)/;
+    let m;
+    if ((m = regex.exec(text)) !== null )
+    {
+      const images : string[] = [];
+      m.slice(1).forEach(match => {
+        match && images.push(`${match}.png`)
+      });
+      setLines([
+        ...staticLines,
+        <StaticLine text={text} prompt="$" />,
+        ...images.map(i => <img class={tw`w-8/12 md:w-3/12`} src={asset(i)} />)
+      ]);
     }
 
     setTimeout(focusLiveLine, 10);
@@ -73,20 +92,12 @@ export default function Terminal() {
   }
 
   return (
-    <div class={tw`p-4 h-full`}>
-      <div class={tw`mx-auto`}>
-        {title.map((t) => (
-          <Line prompt="" text={t} live={false} />
-        ))}
-      </div>
-      {staticLines.map((l) => (
-        <Line prompt="$" text={l} live={false} />
-      ))}
-      <Line
+    <div class={tw`h-full`}>
+      {staticLines}
+      <TerminalInputLine
         ref={liveLine}
         prompt="$"
         key={`${liveText}:${commandHistory.length}`}
-        live={true}
         text={liveText}
         onEnter={handleEnter}
       />
