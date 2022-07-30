@@ -1,10 +1,9 @@
 /** @jsx h */
-import { h } from "preact";
 import { tw } from "twind";
-import { asset } from "$fresh/runtime.ts";
+import { h } from "preact";
 import { MutableRef, useEffect, useRef, useState } from "preact/hooks";
 import TerminalInputLine from "./TerminalInputLine.tsx";
-import StaticLine from "../src/components/StaticLine.tsx";
+import inputHandler from "../src/inputHandler.tsx";
 
 let historyIndex = 0;
 const initCmdHist: string[] = [];
@@ -42,44 +41,10 @@ export default function Terminal() {
     text && setCommandHistory([...commandHistory, text]);
     historyIndex = 0;
 
-    if (text === "clear") {
+    if (text == "clear") {
       setLines(defaultLines);
     } else {
-      setLines([...staticLines, <StaticLine text={text} prompt="$" />]);
-    }
-
-    if (text === "help") {
-      const lines = [
-        "Commands:",
-        "   clear:            clear the terminal",
-        "   help:             show this help",
-        "   show [img,...]:   show image(s):",
-        "      -\"nick\"        print an image of me! 🚀",
-        "      -\"unicorn\"     print an image of my faviourite animal 🦄",
-        "   cv [cmd]:         display parts of my cv:",
-        "      -\"all\"         view my entire cv in one go",
-      ]
-
-      setLines([
-        ...staticLines,
-        <StaticLine text={text} prompt="$" />,
-        ...lines.map(l => <StaticLine text={l} color="blue-500" smSzAdjust={true} />)
-      ]);
-    }
-
-    const regex = /show (\w*)[ ]*(\w*)[ ]*(\w*)[ ]*(\w*)[ ]*(\w*)/;
-    let m;
-    if ((m = regex.exec(text)) !== null )
-    {
-      const images : string[] = [];
-      m.slice(1).forEach(match => {
-        match && images.push(`${match}.png`)
-      });
-      setLines([
-        ...staticLines,
-        <StaticLine text={text} prompt="$" />,
-        ...images.map(i => <img class={tw`w-8/12 md:w-3/12`} src={asset(i)} />)
-      ]);
+      setLines([...staticLines, ...inputHandler(text)]);
     }
 
     setTimeout(focusLiveLine, 10);
