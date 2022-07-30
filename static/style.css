@@ -19,19 +19,8 @@ textarea ~ grammarly-extension {
   display: none;
 }
 
-@media only screen and (min-width: 1700px) and (max-width: 10000px) { 
+/* @media only screen and (min-width: 1700px) and (max-width: 10000px) { 
   video {
     object-position: 0px -140px !important;
   }
-}
-
-.banner:before {
-  content: '';
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 50%);
-  z-index: 1;
-}
+} */

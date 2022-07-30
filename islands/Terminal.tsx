@@ -3,11 +3,11 @@ import { tw } from "twind";
 import { h } from "preact";
 import { MutableRef, useEffect, useRef, useState } from "preact/hooks";
 import TerminalInputLine from "./TerminalInputLine.tsx";
-import inputHandler from "../src/inputHandler.tsx";
+import { inputHandler, defaultLines } from "../src/inputHandler.tsx";
+import StaticLine from "../src/components/StaticLine.tsx";
 
 let historyIndex = 0;
 const initCmdHist: string[] = [];
-const defaultLines: h.JSX.Element[] = [];
 
 export default function Terminal() {
   const liveLine = useRef<HTMLTextAreaElement>(null);
@@ -44,7 +44,11 @@ export default function Terminal() {
     if (text == "clear") {
       setLines(defaultLines);
     } else {
-      setLines([...staticLines, ...inputHandler(text)]);
+      setLines([
+        ...staticLines,
+        ...inputHandler(text),
+        <StaticLine text={" "} />,
+      ]);
     }
 
     setTimeout(focusLiveLine, 10);

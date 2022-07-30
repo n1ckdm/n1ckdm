@@ -7,6 +7,7 @@ interface LineProps {
   color?: string;
   prompt?: string;
   smSzAdjust?: boolean;
+  class?: string;
 }
 
 const Line = (props: LineProps) => {
@@ -17,16 +18,18 @@ const Line = (props: LineProps) => {
   if (!props.smSzAdjust) {
     props.smSzAdjust = false;
   }
-  
+
   const color = props.color || "pink-400";
-  const sBase = tw`flex-grow break-all ${props.smSzAdjust ? "text-xs" : " "} lg:text-lg text-${color}`;
+  const sBase = tw`flex-grow break-all ${
+    props.smSzAdjust ? "text-xs" : " "
+  } lg:text-lg text-${color}`;
   const sPara = tw`whitespace-pre-wrap align-middle`;
   const sPrompt = tw`px-1 text-green-600 font-bold flex-none text-lg`;
 
   return (
     <div class={tw`flex flex-row`}>
       <div class={sPrompt}>{props.prompt}</div>
-      <p class={`${sBase} ${sPara}`}>{props.text}</p>
+      <p class={`${sBase} ${sPara} ${props.class}`}>{props.text}</p>
     </div>
   );
 };

@@ -2,6 +2,7 @@
 import { h } from "preact";
 import { tw } from "twind";
 import StaticLine from "./StaticLine.tsx";
+import version from "nickcv";
 
 const title = [
   `  _______  .__        __        _____                 __  .__         `,
@@ -31,8 +32,7 @@ const titleSm = [
 ];
 
 const termHeader = [
-  "nickdmartin.com",
-  "Personal website v0.0.1",
+  `nickdmartin.com ${version}`,
   " ",
   " ",
   "Hint: Type 'help' to get started",
@@ -40,20 +40,20 @@ const termHeader = [
 
 export default function Title() {
   return (
-      <div class={tw`mx-auto`}>
-        <div class={tw`h-0 invisible md:visible md:h-full font-bold`}>
-          {title.map((t) => (
-            <StaticLine text={t} />
-            ))}
-        </div>
-        <div class={tw`visible md:invisible md:h-0 font-bold`}>
-          {titleSm.map((t) => (
-            <StaticLine text={t} smSzAdjust={true} />
-            ))}
-        </div>
-        {termHeader.map((t) => (
+    <div class={tw`mx-auto`}>
+      <div class={tw`h-0 invisible md:visible md:h-full font-bold`}>
+        {title.map((t) => (
           <StaticLine text={t} />
         ))}
       </div>
+      <div class={tw`visible md:invisible md:h-0 font-bold`}>
+        {titleSm.map((t) => (
+          <StaticLine text={t} smSzAdjust={true} />
+        ))}
+      </div>
+      {termHeader.map((t) => (
+        <StaticLine text={t} />
+      ))}
+    </div>
   );
 }
