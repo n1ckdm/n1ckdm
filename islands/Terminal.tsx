@@ -49,22 +49,6 @@ export default function Terminal() {
         ...inputHandler(text),
         <StaticLine text={" "} />,
       ]);
-    } else {
-      const regex = /show (\w*)[ ]*(\w*)[ ]*(\w*)[ ]*(\w*)[ ]*(\w*)/;
-      let m;
-      if ((m = regex.exec(text)) !== null) {
-        const images: string[] = [];
-        m.slice(1).forEach((match) => {
-          match && images.push(`${match}.png`);
-        });
-        setLines([
-          ...staticLines,
-          <StaticLine text={text} prompt="$" />,
-          ...images.map((i) => (
-            <img class={tw`w-8/12 md:w-3/12`} src={asset(i)} />
-          )),
-        ]);
-      }
     }
 
     setTimeout(focusLiveLine, 10);
