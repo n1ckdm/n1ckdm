@@ -14,8 +14,8 @@ export const handler = async (
     body: JSON.stringify({
       prompt: buildPrompt(questions),
       numResults: 1,
-      maxTokens: 100,
-      temperature: 0.5,
+      maxTokens: 150,
+      temperature: 0.7,
       topKReturn: 0,
       topP: 0.9,
       countPenalty: {

@@ -35,7 +35,8 @@ const termHeader = [
   `nickdmartin.com ${version}`,
   " ",
   " ",
-  "Hint: Type 'help' to get started",
+  "Hint: Type 'help' to get started or use a '?' to ask me (my AI bot) a question",
+  " ",
 ];
 
 export default function Title() {

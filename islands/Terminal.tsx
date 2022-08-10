@@ -52,6 +52,11 @@ export default function Terminal() {
     if (text == "clear") {
       setLines(defaultLines);
     } else if (text.includes("?")) {
+      setLines([
+        ...staticLines,
+        <StaticLine text={text} prompt="$" />,
+        <StaticLine text={"Getting response..."} />,
+      ]);
       let newQuestions = addQuestion(text, questions);
       const answer = await get_bot_answer(newQuestions);
       newQuestions = addAnswer(answer, newQuestions);

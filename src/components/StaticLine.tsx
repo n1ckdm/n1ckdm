@@ -22,8 +22,8 @@ const Line = (props: LineProps) => {
   const color = props.color || "pink-400";
   const sBase = tw`flex-grow break-all ${
     props.smSzAdjust ? "text-xs" : " "
-  } lg:text-lg text-${color}`;
-  const sPara = tw`whitespace-pre-wrap align-middle`;
+  } md:text-lg text-${color}`;
+  const sPara = tw`whitespace-pre-wrap pt-1`;
   const sPrompt = tw`px-1 text-green-600 font-bold flex-none text-lg`;
 
   return (

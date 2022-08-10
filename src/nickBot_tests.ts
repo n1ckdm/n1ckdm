@@ -4,7 +4,7 @@ import {
   assertEquals,
   assertExists,
 } from "https://deno.land/std@0.151.0/testing/asserts.ts";
-import { buildPrompt, Question } from "./nickBot.ts";
+import { buildPrompt, Question } from "./server.ts";
 
 Deno.test("url test", () => {
   const url = new URL("./foo.js", "https://deno.land/");

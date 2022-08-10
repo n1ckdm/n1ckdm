@@ -17,11 +17,15 @@ const TerminalInputLine = forwardRef(
 
     const color = props.color || "pink-400";
     const sBase = tw`flex-grow break-all text-lg text-${color} text-lowercase`;
-    const sInput = tw`bg-transparent h-full focus:outline-none resize-none`;
+    const sInput = tw`bg-transparent focus:outline-none pt-0.5`;
     const sPrompt = tw`px-1 text-green-600 font-bold flex-none text-lg`;
 
     useEffect(() => {
-      function enterHandler({ key }: { key: string }): void {
+      function enterHandler({ key, which }: KeyboardEvent): void {
+        const currentCode = which;
+        if (!key) {
+          key = String.fromCharCode(currentCode);
+        }
         if (key === "Enter") {
           props.onEnter && props.onEnter(text.toLocaleLowerCase());
           setText("");
