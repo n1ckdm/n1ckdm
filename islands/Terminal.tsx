@@ -5,14 +5,22 @@ import { MutableRef, useEffect, useRef, useState } from "preact/hooks";
 import TerminalInputLine from "./TerminalInputLine.tsx";
 import { inputHandler, defaultLines } from "../src/inputHandler.tsx";
 import StaticLine from "../src/components/StaticLine.tsx";
+import {
+  addQuestion,
+  addAnswer,
+  Question,
+  get_bot_answer,
+} from "../src/server.ts";
 
 let historyIndex = 0;
 const initCmdHist: string[] = [];
+const initQuestions: Question[] = [];
 
 export default function Terminal() {
   const liveLine = useRef<HTMLInputElement>(null);
   const [staticLines, setLines] = useState(defaultLines);
   const [liveText, setLiveText] = useState("");
+  const [questions, setQuestions] = useState(initQuestions);
   const [commandHistory, setCommandHistory] = useState(initCmdHist);
 
   useEffect(() => {
@@ -36,13 +44,23 @@ export default function Terminal() {
     };
   }, [commandHistory]);
 
-  function handleEnter(text: string) {
+  async function handleEnter(text: string) {
     setLiveText("");
     text && setCommandHistory([...commandHistory, text]);
     historyIndex = 0;
 
     if (text == "clear") {
       setLines(defaultLines);
+    } else if (text.includes("?")) {
+      let newQuestions = addQuestion(text, questions);
+      const answer = await get_bot_answer(newQuestions);
+      newQuestions = addAnswer(answer, newQuestions);
+      setQuestions(newQuestions);
+      setLines([
+        ...staticLines,
+        <StaticLine text={text} prompt="$" />,
+        <StaticLine text={answer} color="blue-400" />,
+      ]);
     } else {
       setLines([
         ...staticLines,

@@ -1,7 +1,6 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "twind";
-import { asset } from "$fresh/runtime.ts";
 import StaticLine from "../../components/StaticLine.tsx";
 import Me from "../../components/cv/Me.tsx";
 import Languages from "../../components/cv/Languages.tsx";

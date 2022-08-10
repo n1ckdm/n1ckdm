@@ -31,7 +31,7 @@ const comp = (item: education) => (
 export default function () {
   return (
     <div class={tw`grid gap-y-1`}>
-      {cv.eductaion.reverse().map((item) => comp(item))}
+      {cv.education.reverse().map((item) => comp(item))}
     </div>
   );
 }

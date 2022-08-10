@@ -12,7 +12,7 @@ export default function () {
   return (
     <div class={tw`grid gap-y-1`}>
       <img class={tw`rounded ml-2.5`} src={asset("grav.png")} />
-      <StaticLine color={col} text={`Hi, my name is ${me.prefferedName} 👋`} />
+      <StaticLine color={col} text={`Hi, my name is ${me.preferredName} 👋`} />
       <StaticLine
         color={col}
         text={`Fullname: ${me.firstName} ${me.middleName} ${me.lastName} (${me.pronouns})`}
