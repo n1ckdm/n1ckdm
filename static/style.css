@@ -19,8 +19,8 @@ textarea ~ grammarly-extension {
   display: none;
 }
 
-@media only screen and (min-width: 1700px) and (max-width: 10000px) {
+/* @media only screen and (min-width: 1700px) and (max-width: 10000px) { 
   video {
     object-position: 0px -140px !important;
   }
-}
+} */
