@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Brawler:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Brawler:wght@400;700&family=Marmelad&display=swap');
+
+html {
+    font-family: 'Brawler', serif;
+    font-family: 'Marmelad', sans-serif;
+}

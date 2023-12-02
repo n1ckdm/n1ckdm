@@ -8,26 +8,93 @@
     <link href="/css/output.css" rel="stylesheet" />
     <title>Nick Martin</title>
   </head>
-  <body class="w-screen h-screen flex flex-col">
-    <div id="top" class="bg-green-400 h-12">
+
+  <body>
+    <!-- top -->
+    <div id="top" class="absolute h-0 bg-light-accent transition-all ease-in duration-500">
+      <div id="top-content" class="hidden text-lg m-10 text-dark">
+        <h1 class="font-semibold mb-2">Education</h1>
+
+        <a id="close-top" href="#" class="text-dark-accent">Close</a>
+      </div>
     </div>
 
-    <div class="flex flex-grow flex-row">
-      <div id="left" class="bg-purple-600 w-12">
+    <!-- left -->
+    <div id="left" class="absolute w-0 bg-light-accent transition-all ease-in duration-500">
+      <div id="left-content" class="hidden text-lg m-10 text-dark">
+        <h1 class="font-semibold mb-2">Experience</h1>
+
+        <a id="close-left" href="#" class="text-dark-accent">Close</a>
+      </div>
+    </div>
+
+
+    <!-- right -->
+    <div id="right" class="absolute right-0 w-0 bg-light-accent transition-all ease-in-out duration-500">
+      <div id="right-content" class="hidden md:text-lg m-6 md:m-12 text-justify text-dark">
+        <div class="flex items-end mb-4">
+          <h1 class="font-semibold">About me</h1>
+          <img src="img/me.jpg" class="h-20 mb-2 rounded-full" />
+        </div>
+        <p class="">
+          I am a Principal Engineer (specialising in software and robotic systems) at <a class="text-dark-accent" href="https://tharsus.co.uk">Tharsus</a> and a former Senior Lecturer in Aerodynamics at Northumbria University. I have been lucky enough to gain a broad range of experiences throughout my career accross differnt fields of engineering. My journey began with a Bachelor of Engineering in Aerospace Engineering and a PhD in Fluid Mechanics from the University of Surrey, equipping me with a deep understanding of both theoretical and practical aspects of technology and innovation.
+        </p>
+
+        <p class="my-4">
+          In my role at Tharsus, I apply my experience in engineering and technology to solve complex, real-world problems. This experience builds on my time in high-pressure, innovative environments like Williams Martini Racing and Toyota Motorsport GmbH in Formula One, as well as my academic contributions in teaching and research. I have a passion for connecting theoretical knowledge with practical application, continually pushing the boundaries of systems innovation.
+        </p>
+
+        <a id="close-right" href="#" class="text-dark-accent">Close</a>
+      </div>
+    </div>
+
+    <div id="main" class="w-screen h-screen bg-light flex flex-col">
+
+      <!-- top -->
+      <div class="h-12 mx-auto">
+        <a id="top-pannel" href="#" >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mt-3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          </svg>      
+        </a>  
       </div>
   
-      <div id="main" class="bg-pink-400 flex-grow grid content-center">
-        <div class="m-4">
-          <h1 class="text-2xl">Nicholas Martin</h1>
-          <h2 class="text-lg italic">Multidisciplinary systems innovator</h2>
+      <div class="flex flex-grow flex-row">
+
+        <!-- left -->
+        <div class="w-12 flex items-center">
+          <a id="left-pannel"  href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 md:ml-3">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+        </div>
+    
+        <!-- center -->
+        <div id="center-pannel" class="flex-grow grid content-center">
+          <div id="title" class="m-2 md:m-40 cursor-default select-none text-dark/0 transition-colors ease-in duration-1000 delay-75">
+            <h1 class="text-2xl md:text-5xl font-serif">Nicholas Martin</h1>
+            <h2 class="text-lg md:text-2xl tracking-wide italic">Multidisciplinary systems innovator</h2>
+          </div>
+        </div>
+    
+        <!-- right -->
+        <div class="w-12 flex items-center">
+          <a id="right-pannel" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-3 ">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+          </a>
         </div>
       </div>
   
-      <div id="right" class="bg-blue-400 w-12">
+      <!-- bottom -->
+      <div class="h-12 mx-auto flex">
+        <a class="mx-4" href="https://dev.to/n1ckdm"><img src="img/dev.svg" class="h-10 m-1" /></a>
+        <a class="mx-4" href="https://github.com/n1ckdm"><img src="img/github.svg" class="h-10 p-0.5 mt-1" /></a>
+        <a class="mx-4" href="https://www.linkedin.com/in/dr-nick-martin/"><img src="img/linkedin.svg" class="h-10 p-0.5 mt-1" /></a>
       </div>
     </div>
-
-    <div id="bottom" class="bg-orange-400 h-12">
-    </div>
+    <script src="js/index.js" ></script>
   </body>
 </html>
