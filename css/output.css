@@ -687,22 +687,6 @@ video {
   margin: 2.5rem;
 }
 
-.m-12 {
-  margin: 3rem;
-}
-
-.m-4 {
-  margin: 1rem;
-}
-
-.m-20 {
-  margin: 5rem;
-}
-
-.m-40 {
-  margin: 10rem;
-}
-
 .m-2 {
   margin: 0.5rem;
 }
@@ -849,6 +833,10 @@ video {
   display: none;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .h-10 {
   height: 2.5rem;
 }
@@ -867,10 +855,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-0 {
-  height: 0px;
 }
 
 .w-0 {
@@ -947,6 +931,70 @@ video {
 
 .transform-none {
   transform: none;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce-left {
+  0%, 100% {
+    transform: translateX(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-left {
+  animation: bounce-left 1s infinite;
+}
+
+@keyframes bounce-right {
+  0%, 100% {
+    transform: translateX(25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateX(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-right {
+  animation: bounce-right 1s infinite;
+}
+
+@keyframes bounce-up {
+  0%, 100% {
+    transform: translateY(25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+.animate-bounce-up {
+  animation: bounce-up 1s infinite;
 }
 
 .cursor-default {
@@ -1848,11 +1896,6 @@ video {
   background-color: rgb(213 173 70 / var(--tw-bg-opacity));
 }
 
-.bg-main {
-  --tw-bg-opacity: 1;
-  background-color: rgb(106 133 141 / var(--tw-bg-opacity));
-}
-
 .decoration-slice {
   -webkit-box-decoration-break: slice;
           box-decoration-break: slice;
@@ -2034,11 +2077,6 @@ video {
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .text-lg {
@@ -2564,21 +2602,16 @@ html {
 }
 
 @media (min-width: 768px) {
-  .md\:m-40 {
-    margin: 10rem;
-  }
-
   .md\:m-12 {
     margin: 3rem;
   }
 
-  .md\:ml-3 {
-    margin-left: 0.75rem;
+  .md\:m-40 {
+    margin: 10rem;
   }
 
-  .md\:text-lg {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+  .md\:ml-3 {
+    margin-left: 0.75rem;
   }
 
   .md\:text-2xl {
@@ -2589,6 +2622,11 @@ html {
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .md\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
   }
 }
 
