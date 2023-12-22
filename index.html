@@ -4,44 +4,138 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- add favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico" />
-    <link href="css/output.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="src/img/favicon.ico" />
+    <link href="src/css/input.css" type="text/css" rel="stylesheet" />
+
     <title>Nick Martin</title>
   </head>
 
   <body>
     <!-- top -->
-    <div id="top" class="absolute h-0 bg-light-accent transition-all ease-in duration-500">
-      <div id="top-content" class="hidden text-lg m-10 text-dark">
-        <h1 class="font-semibold mb-2">Education</h1>
+    <div
+      id="top"
+      class="absolute h-0 bg-light-accent transition-all ease-in duration-500"
+    >
+      <div id="top-content" class="hidden text-lg text-dark">
+        <video
+          src="src/img/banner.webm"
+          alt="Some art that i did 😊"
+          class="w-full h-64 md:h-96 object-cover mb-4"
+        ></video>
+        <div class="mx-6 my-6 md:mx-80 text-justify">
+          <h1 class="mb-2 text-xl">
+            Some things I've worked on outside of my day job...
+          </h1>
+          <p class="mb-2"></p>
+          <div id="stuff" class="flex gap-10 my-4"></div>
 
-        <a id="close-top" href="#" class="text-dark-accent">Close</a>
+          <a id="close-top" href="#" class="text-dark-accent">Close</a>
+        </div>
       </div>
     </div>
 
     <!-- left -->
-    <div id="left" class="absolute w-0 bg-light-accent transition-all ease-in duration-500">
+    <div
+      id="left"
+      class="absolute w-0 bg-light-accent transition-all ease-in duration-500"
+    >
       <div id="left-content" class="hidden text-lg m-10 text-dark">
         <h1 class="font-semibold mb-2">Experience</h1>
+
+        <div class="my-4">
+          <p class="font-semibold text-xl font-serif">Tharsus</p>
+          <p class="italic">Principal Engineer</p>
+          <p class="text-sm">April 2019 - Present</p>
+          <p>
+            Working at the intersection of mechanical, electronic and software
+            engineering to deliver robotic systems and smart, connected machines
+            for customers.
+          </p>
+        </div>
+
+        <div class="my-4">
+          <p class="font-semibold text-xl font-serif">Northumbria University</p>
+          <p class="italic">Senior Lecturer</p>
+          <p class="text-sm">July 2017 - April 2019</p>
+          <p>
+            Responsible for teaching undergraduate and postgraduate courses in
+            Classical Mechanics, Vehicle Aerodynamics, and Vehicle Dynamics. I
+            also supervised final-year project students, providing guidance and
+            support for their academic endeavors. Additionally, my role included
+            conducting research in active flow control for aerodynamics, with a
+            special focus on zero net mass flux and plasma-based actuators.
+          </p>
+        </div>
+
+        <div class="my-4">
+          <p class="font-semibold text-xl font-serif">Williams Formula One</p>
+          <p class="italic">Aerodynamicist</p>
+          <p class="text-sm">March 2013 - July 2017</p>
+          <p>
+            I developed software tools and contributed to the aerodynamic
+            designs for the race car, enhancing its performance and efficiency.
+            I orchestrated and executed comprehensive wind tunnel testing
+            initiatives, which involved planning and execution, ultimately
+            culminating in detailed analytical reports based on the data
+            gathered. Additionally, I worked on machine-learning models to
+            augment the wind tunnel data, correlating it with computational
+            models and on-track data, thus bridging the gap between theoretical
+            predictions and practical outcomes.
+          </p>
+        </div>
+
+        <div class="my-4">
+          <p class="font-semibold text-xl font-serif">Toyota Formula One</p>
+          <p class="italic">Junior Aerodynamicist</p>
+          <p class="text-sm">July 2007 - August 2008</p>
+          <p>
+            I was involved in the development of the TF108 car. My role included
+            overseeing 100 hours of wind tunnel testing, where I was responsible
+            for planning test schedules and liaising with model designers.
+            Additionally, I reported on the aerodynamic performance of the wind
+            tunnel model, providing crucial insights and data to inform the
+            team's strategy and car design decisions.
+          </p>
+        </div>
 
         <a id="close-left" href="#" class="text-dark-accent">Close</a>
       </div>
     </div>
 
-
     <!-- right -->
-    <div id="right" class="absolute right-0 w-0 bg-light-accent transition-all ease-in-out duration-500">
-      <div id="right-content" class="hidden md:text-lg m-6 md:m-12 text-justify text-dark">
+    <div
+      id="right"
+      class="absolute right-0 w-0 bg-light-accent transition-all ease-in-out duration-500"
+    >
+      <div
+        id="right-content"
+        class="hidden md:text-lg mx-6 my-6 md:mx-80 text-justify text-dark"
+      >
         <div class="flex items-end mb-4">
           <h1 class="font-semibold">About me</h1>
-          <img src="img/me.jpg" class="h-20 mb-2 rounded-full" />
+          <img src="src/img/me.jpg" class="h-20 mb-2 rounded-full" />
         </div>
         <p class="">
-          I am a Principal Engineer (specialising in software and robotic systems) at <a class="text-dark-accent" href="https://tharsus.co.uk">Tharsus</a> and a former Senior Lecturer in Aerodynamics at Northumbria University. I have been lucky enough to gain a broad range of experiences throughout my career accross different fields of engineering. My journey began with a Bachelor of Engineering in Aerospace Engineering and a PhD in Fluid Mechanics from the University of Surrey, equipping me with a deep understanding of both theoretical and practical aspects of technology and innovation.
+          I am a Principal Engineer (specialising in software and robotic
+          systems) at
+          <a class="text-dark-accent" href="https://tharsus.co.uk">Tharsus</a>
+          and a former Senior Lecturer in Aerodynamics at Northumbria
+          University. I have been lucky enough to gain a broad range of
+          experiences throughout my career accross different fields of
+          engineering. My journey began with a Bachelor of Engineering in
+          Aerospace Engineering and a PhD in Fluid Mechanics from the University
+          of Surrey, equipping me with a deep understanding of both theoretical
+          and practical aspects of technology and innovation.
         </p>
 
         <p class="my-4">
-          In my role at Tharsus, I apply my experience in engineering and technology to solve complex, real-world problems. This experience builds on my time in high-pressure, innovative environments like Williams Martini Racing and Toyota Motorsport GmbH in Formula One, as well as my academic contributions in teaching and research. I have a passion for connecting theoretical knowledge with practical application, continually pushing the boundaries of systems innovation.
+          In my role at Tharsus, I apply my experience in engineering and
+          technology to solve complex, real-world problems. This experience
+          builds on my time in high-pressure, innovative environments like
+          Williams Martini Racing and Toyota Motorsport GmbH in Formula One, as
+          well as my academic contributions in teaching and research. I have a
+          passion for connecting theoretical knowledge with practical
+          application, continually pushing the boundaries of systems innovation.
         </p>
 
         <a id="close-right" href="#" class="text-dark-accent">Close</a>
@@ -49,56 +143,101 @@
     </div>
 
     <div id="main" class="w-screen h-screen bg-light flex flex-col">
-
       <!-- top -->
       <div class="h-12 mx-auto animate-bounce-up">
         <a id="top-pannel" href="#" class="has-tooltip">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mt-3">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6 mt-3"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+            />
           </svg>
-          <span class="tooltip">education</span>      
+          <span class="tooltip">stuff</span>
         </a>
       </div>
-  
-      <div class="flex flex-grow flex-row">
 
+      <div class="flex flex-grow flex-row">
         <!-- left -->
         <div class="w-12 flex items-center">
           <a id="left-pannel" href="#" class="animate-bounce-right has-tooltip">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 md:ml-3">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 md:ml-3"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
             </svg>
             <span class="tooltip">experience</span>
           </a>
         </div>
-    
+
         <!-- center -->
         <div id="center-pannel" class="flex-grow grid content-center">
-          <div id="title" class="m-2 md:m-40 cursor-default select-none text-dark/0 transition-colors ease-in duration-1000 delay-75">
+          <div
+            id="title"
+            class="m-2 md:m-40 cursor-default select-none text-dark/0 transition-colors ease-in duration-1000 delay-75"
+          >
             <h1 class="text-2xl md:text-5xl font-serif">Nicholas Martin</h1>
-            <h2 class="text-lg md:text-2xl tracking-wide italic">Multidisciplinary systems innovator</h2>
+            <h2 class="text-lg md:text-2xl tracking-wide italic">
+              Multidisciplinary systems innovator
+            </h2>
           </div>
         </div>
-    
+
         <!-- right -->
         <div class="w-12 flex items-center">
           <a id="right-pannel" href="#" class="animate-bounce-left has-tooltip">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-3 ">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6 ml-3"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
             </svg>
             <span class="tooltip">about me</span>
           </a>
         </div>
       </div>
-  
+
       <!-- bottom -->
       <div class="h-12 mx-auto flex">
-        <a class="mx-4" href="https://dev.to/n1ckdm"><img src="img/dev.svg" class="h-10 m-1" /></a>
-        <a class="mx-4" href="https://github.com/n1ckdm"><img src="img/github.svg" class="h-10 p-0.5 mt-1" /></a>
-        <a class="mx-4" href="https://www.linkedin.com/in/dr-nick-martin/"><img src="img/linkedin.svg" class="h-10 p-0.5 mt-1" /></a>
-        <a class="mx-4" href="resume.html"><img src="img/cv.svg" class="h-10 p-0.5 mt-1" /></a>
+        <a class="mx-4" href="https://dev.to/n1ckdm"
+          ><img src="src/img/dev.svg" class="h-10 m-1"
+        /></a>
+        <a class="mx-4" href="https://github.com/n1ckdm"
+          ><img src="src/img/github.svg" class="h-10 p-0.5 mt-1"
+        /></a>
+        <a class="mx-4" href="https://www.linkedin.com/in/dr-nick-martin/"
+          ><img src="src/img/linkedin.svg" class="h-10 p-0.5 mt-1"
+        /></a>
+        <a class="mx-4" href="resume.html"
+          ><img src="src/img/cv.svg" class="h-10 p-0.5 mt-1"
+        /></a>
       </div>
     </div>
-    <script src="js/index.js" ></script>
+    <script src="src/js/index.js" type="module"></script>
+    <script src="src/js/stuff.js" type="module"></script>
   </body>
 </html>
